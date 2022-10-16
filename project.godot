@@ -1,0 +1,75 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+_global_script_classes=[{
+"base": "RefCounted",
+"class": &"LogWriter",
+"language": &"GDScript",
+"path": "res://core/classes/logger.gd"
+}, {
+"base": "RefCounted",
+"class": &"PackageManager",
+"language": &"GDScript",
+"path": "res://core/classes/pckmgr.gd"
+}, {
+"base": "RefCounted",
+"class": &"ThreadLoader",
+"language": &"GDScript",
+"path": "res://core/classes/loader.gd"
+}]
+_global_script_class_icons={
+"LogWriter": "",
+"PackageManager": "",
+"ThreadLoader": ""
+}
+
+[application]
+
+config/name="godot-template"
+run/main_scene="res://core/startup.tscn"
+config/features=PackedStringArray("4.0")
+boot_splash/show_image=false
+boot_splash/bg_color=Color(0, 0, 0, 1)
+config/icon="res://core/images/icon.png"
+config/version="1.0.0"
+
+[audio]
+
+buses/default_bus_layout="res://core/audio_bus_default.tres"
+
+[autoload]
+
+Data="*res://core/singletons/data.gd"
+Utils="*res://core/singletons/utils.gd"
+Game="*res://core/singletons/game.gd"
+
+[category]
+
+property_name=1
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
+window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[gui]
+
+theme/custom="res://core/ui/theme_default.tres"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+threads/thread_model=2

@@ -1,0 +1,276 @@
+[gd_scene load_steps=15 format=3 uid="uid://pl4a47ydfg5d"]
+
+[ext_resource type="Script" path="res://core/ui/transitions/transitions.gd" id="1_llf1i"]
+[ext_resource type="Texture2D" uid="uid://dgbenbj602pqx" path="res://core/images/transitions/godot_nodes.svg" id="2_uxppb"]
+
+[sub_resource type="FontVariation" id="FontVariation_btfxl"]
+variation_embolden = 2.0
+variation_transform = Transform2D(1, 0.15, 0, 1, 0, 0)
+spacing_glyph = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_k2nme"]
+font = SubResource("FontVariation_btfxl")
+font_size = 30
+shadow_color = Color(0.403922, 0.556863, 0.901961, 1)
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_662y5"]
+bg_color = Color(0.360784, 0.552941, 0.894118, 1)
+skew = Vector2(0.15, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5i1k"]
+bg_color = Color(1, 1, 1, 1)
+skew = Vector2(0.15, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_tihwo"]
+variation_embolden = 1.5
+variation_transform = Transform2D(1, 0.15, 0, 1, 0, 0)
+spacing_glyph = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_oa1j8"]
+font = SubResource("FontVariation_tihwo")
+font_size = 36
+
+[sub_resource type="FontVariation" id="FontVariation_xyjd7"]
+variation_embolden = 1.0
+variation_transform = Transform2D(1, 0.15, 0, 1, 0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1fa1g"]
+font = SubResource("FontVariation_xyjd7")
+font_size = 18
+
+[sub_resource type="Animation" id="Animation_0c4lr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controls:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Background:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5v7r7"]
+resource_name = "intro"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controls:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove_old_scene"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2m3jv"]
+resource_name = "outro"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controls:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"set_new_scene"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Background:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qrr2w"]
+_data = {
+"RESET": SubResource("Animation_0c4lr"),
+"intro": SubResource("Animation_5v7r7"),
+"outro": SubResource("Animation_2m3jv")
+}
+
+[node name="Transition" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_llf1i")
+
+[node name="Background" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Controls" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Image" type="ColorRect" parent="Controls"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.239216, 0.380392, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Controls"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -300.0
+offset_right = 500.0
+offset_bottom = 300.0
+grow_vertical = 2
+texture = ExtResource("2_uxppb")
+stretch_mode = 4
+
+[node name="VBoxProgress" type="VBoxContainer" parent="Controls"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -480.0
+offset_top = -145.0
+offset_right = -80.0
+offset_bottom = -79.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Controls/VBoxProgress"]
+offset_right = 400.0
+offset_bottom = 47.0
+text = "Loading"
+label_settings = SubResource("LabelSettings_k2nme")
+horizontal_alignment = 2
+vertical_alignment = 1
+uppercase = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Controls/VBoxProgress"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2i(0, 15)
+offset_top = 51.0
+offset_right = 400.0
+offset_bottom = 66.0
+theme_override_styles/background = SubResource("StyleBoxFlat_662y5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_o5i1k")
+rounded = true
+show_percentage = false
+
+[node name="VBoxTips" type="VBoxContainer" parent="Controls"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -580.0
+offset_top = -100.0
+offset_right = -80.0
+offset_bottom = 100.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="TipsTitle" type="Label" parent="Controls/VBoxTips"]
+offset_right = 500.0
+offset_bottom = 56.0
+text = "Tips"
+label_settings = SubResource("LabelSettings_oa1j8")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="TipsContent" type="Label" parent="Controls/VBoxTips"]
+offset_top = 60.0
+offset_right = 500.0
+offset_bottom = 120.0
+text = "Godot Engine is a feature-packed, cross-platform game engine to create 2D and 3D games from a unified interface."
+label_settings = SubResource("LabelSettings_1fa1g")
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_qrr2w")
+}
